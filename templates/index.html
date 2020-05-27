@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <title>Match Predictor Breaker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+</head>
+<body>
+    <h2>Thanks Opendota API <3</h2>
+    <p>Enter the heroes for each team below and the server will look for the corresponding match that matches both sides' heroes.</p>
+    <form method="POST" action="/submit">
+        <label for="radiant_heroes">Radiant Heroes</label>
+        <select id="radiant_heroes" style="color: black" multiple name="radiant_heroes[]">
+            {% for key, value in hero_names.items() %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+        <label for="dire_heroes">Dire Heroes</label>
+        <select id="dire_heroes" style="color: black" multiple name="dire_heroes[]">
+            {% for key, value in hero_names.items() %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        const radiant_choices = new Choices("#radiant_heroes", {
+            maxItemCount: 5
+        })
+        const dire_choices = new Choices("#dire_heroes", {
+            maxItemCount: 5
+        })
+    </script>
+</body>
